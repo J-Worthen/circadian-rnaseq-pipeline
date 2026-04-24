@@ -24,6 +24,19 @@ example_data/sample_R2.fastq.gz
 
 ---
 
-## Step 1: Remove rRNA reads (SortMeRNA)
+## Required Databases (NOT included)
 
-Script:
+Download rRNA databases from the official SortMeRNA repository:
+
+https://github.com/sortmerna/sortmerna/tree/master/data/rRNA_databases
+
+Required files:
+- silva-euk-18s-id95.fasta
+- silva-euk-28s-id98.fasta
+
+Build indices using:
+
+```bash
+indexdb_rna \
+  --ref silva-euk-18s-id95.fasta,18s_db \
+  --ref silva-euk-28s-id98.fasta,28s_db
