@@ -39,4 +39,4 @@ references/
 
 ## Motif enrichment code availability
 
-Motif enrichment statistics were generated using a collaborator-developed workflow that is not redistributed here. The repository includes the motif set and downstream scripts used to scan motif locations, filter enriched motif sites by genomic context, restrict sites to circadian genes, and summarize early-wave target genes from the enrichment output tables.
+Motif enrichment statistics were generated using a Dartmouth College Data Analytics Core developed workflow that is not redistributed here. The repository includes the motif set and downstream scripts used to scan motif locations, filter enriched motif sites by genomic context, restrict sites to circadian genes, and summarize early-wave target genes from the enrichment output tables.
