@@ -1,42 +1,42 @@
-# circadian-rnaseq-pipeline
+# Circadian RNA-seq Pipeline
 
-Reproducible RNA-seq pipeline for transcript-level circadian analysis using:
-SortMeRNA, STAR, RSEM, LIMBR, and ECHO.
+This repository contains example scripts used for RNA-seq preprocessing, alignment, transcript quantification, and selected downstream motif-site processing for a circadian adipocyte transcriptomics workflow.
 
----
+## Repository structure
 
-## Overview
+```text
+scripts/
+  01_sortmerna_rrna_removal.sh
+  02_star_generate_index_optional.sh
+  03_star_alignment.sh
+  04_rsem_prepare_reference.sh
+  05_rsem_quantify_samples.sh
 
-This repository contains scripts to process RNA-seq data from raw FASTQ files through transcript-level quantification and circadian analysis.
+04_ATAC_motif_analysis/
+  scripts/
+    01_run_motifmatchr_on_BAT_peaks.R
+    02_extract_enriched_motif_sites_by_ZT.R
+    03_filter_enriched_motif_sites_by_TSS_tier.R
+    04_filter_enriched_tiers_to_circadian_genes.R
+    05_make_early_wave_ZT5and9_tier1_targets_list.R
+  motifs/
+    JASPAR_selected_73TFs_PLUS_hetero.meme
 
-Workflow:
+metadata/
+  rsem_samples.csv
 
-FASTQ → SortMeRNA → STAR → RSEM → LIMBR → ECHO
+references/
+  Mus_musculus.GRCm38.dna.primary_assembly.fa
+  Mus_musculus.GRCm38.100.gtf
+```
 
----
+## Notes
 
-## Example Data
+- Paths are written relative to the repository root using `$(pwd)` or `getwd()`.
+- Reference FASTA/GTF files are expected in `references/`.
+- STAR genome indexing and RSEM reference preparation require substantial memory for mammalian genomes and should be run on an HPC or high-memory workstation.
+- Large generated outputs, STAR indexes, RSEM references, FASTQ files, and BAM files should not be committed to GitHub.
 
-Small paired-end FASTQ files are provided for testing:
+## Motif enrichment code availability
 
-example_data/sample_R1.fastq.gz  
-example_data/sample_R2.fastq.gz  
-
----
-
-## Required Databases (NOT included)
-
-Download rRNA databases from the official SortMeRNA repository:
-
-https://github.com/sortmerna/sortmerna/tree/master/data/rRNA_databases
-
-Required files:
-- silva-euk-18s-id95.fasta
-- silva-euk-28s-id98.fasta
-
-Build indices using:
-
-```bash
-indexdb_rna \
-  --ref silva-euk-18s-id95.fasta,18s_db \
-  --ref silva-euk-28s-id98.fasta,28s_db
+Motif enrichment statistics were generated using a collaborator-developed workflow that is not redistributed here. The repository includes the motif set and downstream scripts used to scan motif locations, filter enriched motif sites by genomic context, restrict sites to circadian genes, and summarize early-wave target genes from the enrichment output tables.
