@@ -20,7 +20,7 @@ scripts/
     04_filter_enriched_tiers_to_circadian_genes.R
     05_make_early_wave_ZT5and9_tier1_targets_list.R
   motifs/
-    JASPAR_selected_73TFs_PLUS_hetero.meme
+    JASPAR_circadian_TFs.meme
 
 metadata/
   rsem_samples.csv
